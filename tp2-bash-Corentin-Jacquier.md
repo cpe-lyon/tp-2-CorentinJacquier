@@ -6,13 +6,13 @@ Corentin JACQUIER ICS
 
 ## Exercice 1 - Variables d'environnement
 
-C'est le fichier `.bash_history` qui contient l'historique des commandes tapées par l'utilisateur. On peut voir le chemin d'accès au repertoire courant avec la commande `pwd` qui donne `/home/User` et on peut voir le contenu du fichier avec la commande `cat .bash_history`.
+C'est le fichier `.bash_history` qui contient l'historique des commandes tapées par l'utilisateur. On peut voir le chemin d'accès au répertoire courant avec la commande `pwd` qui donne `/home/User` et on peut voir le contenu du fichier avec la commande `cat .bash_history`.
 
-La commande `cd` permet de revenir dans le réportoire personnel grace à la variable d'environnement `$HOME`.
+La commande `cd` permet de revenir dans le répertoire personnel grâce à la variable d'environnement `$HOME`.
 
 Tout d'abord, on peut voir le contenu des variables avec la commande `printenv [$VAR]`. 
 
-Alors, pour `LANG` affiche la langue utilisée par le terminal (en_US) et le language utilisé (UTF-8). 
+Alors, pour `LANG` affiche la langue utilisée par le terminal (en_US) et le langage utilisé (UTF-8). 
 
 Ensuite la variable `PWD`, contient le répertoire courant. Et `OLDPWD` contient le répertoire courant précédent. 
 
@@ -36,7 +36,7 @@ On fait une variable d'environnement `NOM` avec `export NOM="Corentin Jacquier"`
 
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1018785508370939904/unknown.png">
 
-La varibale d'environnement vide possède un caractère vide alors que si on fait `unset` la variable d'environnement n'existe plus. 
+La variable d'environnement vide possède un caractère vide alors que si on fait `unset` la variable d'environnement n'existe plus. 
 
 On écrit `echo $HOME=/home/User` qui retourne `/home/User=/home/User` le chemin d'accès au dossier personnel d'après bash. 
 
@@ -52,15 +52,19 @@ On code le script suivant :
 PASSWORD="1234"
 read -s -p "Mot de passe : " pwd
 
-if [ "$pwd" = "$PASSWORD" ];
+if [ _$pwd = _$PASSWORD ];
 then
-echo "Mot de passe bon"
+echo -e "Mot de passe bon \n"
 else
-echo "Mot de passe erroné"
+echo -e "Mot de passe erroné \n"
 fi
 ```
 
-On donne les permissions au script avec `chmod u+x testpwd.sh` pour l'éxécuter avec la commande `./testpwd.sh`. 
+On a `_` devant les variable dans le `if`, permet de s'assurer que si il y a des valeurs vide le test marche encore. 
+
+Les `-e` permettent d'interpréte `\n` pour sauter un ligne. 
+
+On donne les permissions au script avec `chmod u+x testpwd.sh` pour l'exécuter avec la commande `./testpwd.sh`. 
 
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1018803061700968458/unknown.png">
 
@@ -87,7 +91,7 @@ fi
 is_number
 ```
 
-On donne les permissions au script avec `chmod u+x is_number.sh` pour l'éxécuter avec la commande `./is_number.sh`. 
+On donne les permissions au script avec `chmod u+x is_number.sh` pour l'exécuter avec la commande `./is_number.sh`. 
 
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1018803461548154890/unknown.png">
 
@@ -111,7 +115,7 @@ else
 fi
 ```
 
-On donne les permissions au script avec `chmod u+x coco.sh` pour l'éxécuter avec la commande `./coco.sh`. 
+On donne les permissions au script avec `chmod u+x coco.sh` pour l'exécuter avec la commande `./coco.sh`. 
 
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1018806900877434930/unknown.png">
 
@@ -132,7 +136,7 @@ done
 echo "$TEMP"
 ```
 
-On donne les permissions au script avec `chmod u+x facto.sh` pour l'éxécuter avec la commande `./facto.sh`. 
+On donne les permissions au script avec `chmod u+x facto.sh` pour l'exécuter avec la commande `./facto.sh`. 
 
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1018815399489450035/unknown.png">
 
@@ -164,7 +168,7 @@ echo "Gagné !"
 
 On a `-ne` pour non-equal (!=) et `lt` pour less-than.
 
-On donne les permissions au script avec `chmod u+x facto.sh` pour l'éxécuter avec la commande `./facto.sh`. 
+On donne les permissions au script avec `chmod u+x facto.sh` pour l'exécuter avec la commande `./facto.sh`. 
 
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1018817686370799647/unknown.png">
 
@@ -212,6 +216,19 @@ echo "Maxi: $max"
 echo "Moyenne: $((sum / 3))"
 ```
 
-On donne les permissions au script avec `chmod u+x stat.sh` pour l'éxécuter avec la commande `./stat.sh`. 
+On donne les permissions au script avec `chmod u+x stat.sh` pour l'exécuter avec la commande `./stat.sh`. 
 
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1018820474949615678/unknown.png">
+
+Pour avoir n quelconque de paramètres, on met en commentaire le premier `if` avec `##` :
+
+```bash 
+##if [ $# -ne 6 ]; 
+##then
+##      echo "Guide: $0 n1 n2 n3 n4 n5"
+##      exit 1
+##fi
+``` 
+Alors, on peut exécuter le script avec n paramètres. 
+
+<img src="https://media.discordapp.net/attachments/1017478318934724638/1019151730241458247/unknown.png?width=1692&height=380">
