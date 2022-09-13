@@ -234,7 +234,7 @@ Alors, on peut exécuter le script avec n paramètres.
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1019151730241458247/unknown.png?width=1692&height=380">
 
 
-Enfin, pour mettre les valeurs dans un tableau en demandant les valuers à l'utilisateur, on a alors le code suivant :
+Enfin, pour mettre les valeurs dans un tableau en demandant les valeurs à l'utilisateur, on a alors le code suivant :
 
 ```bash
   
