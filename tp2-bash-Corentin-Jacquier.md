@@ -232,3 +232,63 @@ Pour avoir n quelconque de paramètres, on met en commentaire le premier `if` av
 Alors, on peut exécuter le script avec n paramètres. 
 
 <img src="https://media.discordapp.net/attachments/1017478318934724638/1019151730241458247/unknown.png?width=1692&height=380">
+
+
+Enfin, pour mettre les valeurs dans un tableau en demandant les valuers à l'utilisateur, on a alors le code suivant :
+
+```bash
+  
+
+#!/bin/bash
+
+# Initialisation des variables
+declare -a notes
+declare -i i=0
+declare -i min=100
+declare -i max=-100
+declare -i moyenne=0
+declare -i somme=0
+
+# Saisie des notes
+while  true
+	do
+	read -p "Saisir note : " input
+	if [ $input -ge -100 ] && [ $input -le 100 ] && [[ $input == ?(-)+([0-9]) ]];
+	then
+		notes[$i]=$input
+		i=$i+1
+	elif [[ $input = "q" ]] || [[ $input = "Q" ]];
+	then
+		break
+	else
+		echo  "La note doit être comprise entre -100 et 100 / Entrer sur q/Q pour quitter"
+	fi
+done
+
+# Calcul des notes
+for  note  in  ${notes[*]}
+	do
+	if [ $note -lt $min ]
+	then
+		min=$note
+	fi
+	if [ $note -gt $max ]
+	then
+		max=$note
+	fi
+	somme=$somme+$note
+done
+moyenne=$somme/10
+
+
+# Affichage des résultats
+echo  "La note minimale est $min"
+echo  "La note maximale est $max"
+echo  "La moyenne est $moyenne"
+```
+
+Au lieu d'utiliser un regex, on utilise le Pattern-Matching de bash.
+
+On donne les permissions au script avec `chmod u+x stat2.sh` pour l'exécuter avec la commande `./stat2.sh`. 
+
+<img src="https://media.discordapp.net/attachments/1017478318934724638/1019188488840691773/unknown.png">
